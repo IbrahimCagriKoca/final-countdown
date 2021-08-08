@@ -5,8 +5,8 @@ import './stack.scss';
 const Stack = ({ cards }) => {
 	return (
 		<div className='stack'>
-			{cards.map((v, i) => (
-				<Card value={v} order={i} cardSpan={20} />
+			{cards.map((card, i) => (
+				<Card card={card} order={i} cardSpan={20} />
 			))}
 		</div>
 	);

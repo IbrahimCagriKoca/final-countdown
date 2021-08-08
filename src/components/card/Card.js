@@ -1,10 +1,12 @@
 import React from 'react';
 import './card.scss';
 
-const Card = ({ value, order, cardSpan }) => {
+const Card = ({ card: { name, isOpen }, order, cardSpan }) => {
 	return (
-		<div className='card' style={{ zIndex: order, top: order * cardSpan, left: order }}>
-			{value}
+		<div
+			className='card'
+			style={{ zIndex: order, top: order * cardSpan, left: order, backgroundColor: isOpen ? 'white' : 'green' }}>
+			{isOpen ? name : ''}
 		</div>
 	);
 };
