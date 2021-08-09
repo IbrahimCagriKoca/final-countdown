@@ -4,9 +4,9 @@ import './stack.scss';
 
 const Stack = ({ cards, stackId, onCardClick, selectedCardId }) => {
 	const _onCardClick = (card, order) => {
-		console.log('order', order);
 		onCardClick(card, cards.length - order, stackId);
 	};
+	console.log(cards);
 	return (
 		<div className='stack'>
 			{cards.map((card, i) => (

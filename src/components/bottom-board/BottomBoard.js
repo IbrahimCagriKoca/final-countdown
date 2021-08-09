@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Stack from '../stack/Stack';
-import { times, isEmpty, last } from 'lodash';
+import { times, isEmpty } from 'lodash';
 import './bottomBoard.scss';
 
 const openLastCard = (cards) => {
@@ -16,7 +16,6 @@ const checkFinished = (cards) => {
 	}
 	const last13 = cards.slice(cards.length - 13);
 	for (let i = 0; i < 13; i++) {
-		console.log(last13[i]);
 		if (!last13[i].isOpen) return false;
 		if (last13[i].value !== i + 1) {
 			return false;
@@ -43,7 +42,7 @@ const BottomBoard = ({ drawCards, shouldDraw, setShouldDraw }) => {
 			if (moving.card.value === card.value + 1) {
 				moveCards(moving.nthFromLastCard, moving.stackId, stackId);
 			} else {
-				alert('nabiyon amk');
+				alert('Çok dikkat çekiyosun yapma!');
 			}
 		}
 	};
