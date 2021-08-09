@@ -1,20 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import Stack from '../stack/Stack';
-import { times } from 'lodash';
+import { times, isEmpty, last } from 'lodash';
 import './bottomBoard.scss';
 
 const openLastCard = (cards) => {
-	cards[cards.length - 1].isOpen = true;
-	return cards;
+	if (cards.length > 0) {
+		cards[cards.length - 1].isOpen = true;
+		return cards;
+	}
+};
+
+const checkFinished = (cards) => {
+	if (cards.length < 13) {
+		return false;
+	}
+	const last13 = cards.slice(cards.length - 13);
+	for (let i = 0; i < 13; i++) {
+		console.log(last13[i]);
+		if (!last13[i].isOpen) return false;
+		if (last13[i].value !== i + 1) {
+			return false;
+		}
+	}
+	return true;
 };
 
 const BottomBoard = ({ drawCards, shouldDraw, setShouldDraw }) => {
 	const [stackCards, setStackCards] = useState([[], [], [], [], [], [], [], [], [], []]);
+	const [moving, setMoving] = useState({});
 
 	const dealNewCards = () => {
 		let drawnCards = drawCards(10);
 		setShouldDraw(false);
 		setStackCards(stackCards.map((cards, i) => [...cards, { ...drawnCards[i], isOpen: true }]));
+	};
+
+	const onCardClick = (card, nthFromLastCard, stackId) => {
+		if (isEmpty(moving)) {
+			setMoving({ card, nthFromLastCard, stackId });
+		} else {
+			setMoving({});
+			if (moving.card.value === card.value + 1) {
+				moveCards(moving.nthFromLastCard, moving.stackId, stackId);
+			} else {
+				alert('nabiyon amk');
+			}
+		}
 	};
 
 	useEffect(() => {
@@ -40,10 +71,32 @@ const BottomBoard = ({ drawCards, shouldDraw, setShouldDraw }) => {
 		}
 	}, [shouldDraw]);
 
+	const moveCards = (n, from, to) => {
+		let newStackCards = [...stackCards];
+		newStackCards[to] = [...newStackCards[to], ...newStackCards[from].splice(-1 * n)];
+		openLastCard(newStackCards[from]);
+		if (checkFinished(newStackCards[to])) {
+			newStackCards[to].splice(-13);
+		}
+		setStackCards(newStackCards);
+	};
+
 	return (
-		<div className='bottom-board'>
+		<div
+			className='bottom-board'
+			onClick={(e) => {
+				if (!e.target.classList.contains('card')) {
+					setMoving({});
+				}
+			}}>
 			{times(10, (i) => (
-				<Stack cards={stackCards[i]} key={i} />
+				<Stack
+					cards={stackCards[i]}
+					key={i}
+					stackId={i}
+					onCardClick={onCardClick}
+					selectedCardId={moving.card && moving.card.id}
+				/>
 			))}
 		</div>
 	);
