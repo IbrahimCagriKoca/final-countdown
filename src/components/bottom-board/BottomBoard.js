@@ -88,9 +88,7 @@ const BottomBoard = ({ drawCards, shouldDraw, setShouldDraw }) => {
 		else {
 			console.log('cards:', e.target.value);
 		}
-		console.log(gg);
 	};
-	console.log(stackCards);
 
 	return (
 		<div
