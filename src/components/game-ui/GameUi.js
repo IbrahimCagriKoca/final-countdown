@@ -4,7 +4,7 @@ import TopBoard from '../top-board/TopBoard';
 import { shuffle, take } from 'lodash';
 
 const allCardNames = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-
+let completedStacks = 0;
 const fullDeck = []
 	.concat(
 		allCardNames,
@@ -45,8 +45,14 @@ const GameUi = () => {
 				onDrawClick={() => {
 					setShouldDraw(true);
 				}}
+				completedStacks={completedStacks}
 			/>
-			<BottomBoard drawCards={drawCards} shouldDraw={shouldDraw} setShouldDraw={setShouldDraw} />
+			<BottomBoard
+				drawCards={drawCards}
+				shouldDraw={shouldDraw}
+				setShouldDraw={setShouldDraw}
+				completedStacks={completedStacks}
+			/>
 		</div>
 	);
 };

@@ -34,12 +34,13 @@ const BottomBoard = ({ drawCards, shouldDraw, setShouldDraw }) => {
 		setStackCards(stackCards.map((cards, i) => [...cards, { ...drawnCards[i], isOpen: true }]));
 	};
 
-	const onCardClick = (card, nthFromLastCard, stackId) => {
+	const onCardClick = (card, nthFromLastCard, stackId, belowCard) => {
 		if (isEmpty(moving)) {
 			setMoving({ card, nthFromLastCard, stackId });
 		} else {
 			setMoving({});
 			if (moving.card.value === card.value + 1) {
+				if (nthFromLastCard > 1 && belowCard.value !== moving.card.value + 1) return console.log('gg');
 				moveCards(moving.nthFromLastCard, moving.stackId, stackId);
 			} else {
 				alert('Çok dikkat çekiyosun yapma!');
@@ -76,9 +77,20 @@ const BottomBoard = ({ drawCards, shouldDraw, setShouldDraw }) => {
 		openLastCard(newStackCards[from]);
 		if (checkFinished(newStackCards[to])) {
 			newStackCards[to].splice(-13);
+			completedStacks++;
 		}
 		setStackCards(newStackCards);
 	};
+	const isPlaceHolder = (e) => {
+		let gg = false;
+
+		if (e.target.value === []) gg = true;
+		else {
+			console.log('cards:', e.target.value);
+		}
+		console.log(gg);
+	};
+	console.log(stackCards);
 
 	return (
 		<div
@@ -95,6 +107,7 @@ const BottomBoard = ({ drawCards, shouldDraw, setShouldDraw }) => {
 					stackId={i}
 					onCardClick={onCardClick}
 					selectedCardId={moving.card && moving.card.id}
+					isPlaceHolder={isPlaceHolder}
 				/>
 			))}
 		</div>

@@ -1,4 +1,6 @@
 .top-board {
+    position: relative;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -6,4 +8,8 @@
 
 .topboard-container {
     display: flex;
+}
+
+.closed-stacks {
+    width: 500px;
 }

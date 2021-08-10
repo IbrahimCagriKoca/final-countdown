@@ -1,8 +1,11 @@
 import React from 'react';
 import './stackHolder.scss';
+import cardback from '../../assets/cardback.jpg';
+import { times } from 'lodash';
 
-const StackHolder = () => {
-	return <div className='stack-holder'></div>;
+const StackHolder = (isCompleted) => {
+	console.log(isCompleted);
+	return <div className={!isCompleted ? 'completed-stack' : 'stack-holder'}></div>;
 };
 
 export default StackHolder;

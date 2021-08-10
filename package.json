@@ -6,8 +6,8 @@
   "author": "dino",
   "license": "ISC",
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server --mode development --open --hot --port 3000",
-    "build": "node_modules/.bin/webpack --config webpack.prod.js --mode production"
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   },
   "dependencies": {
     "css-loader": "^5.0.1",
@@ -17,6 +17,7 @@
     "react-dom": "^16.12.0",
     "react-hot-loader": "^4.12.19",
     "react-router": "^5.2.0",
+    "react-scripts": "^4.0.3",
     "sass-loader": "^10.0.5",
     "style-loader": "^2.0.0"
   },
@@ -39,5 +40,17 @@
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
