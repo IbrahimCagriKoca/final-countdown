@@ -7,7 +7,6 @@ import './topBoard.scss';
 const TopBoard = ({ closedStackCount, placeHolderCount, onDrawClick }, completedStacks) => {
 	let isCompleted = false;
 	useEffect(() => {
-		console.log(completedStacks);
 		if (completedStacks > 0) {
 			isCompleted = true;
 			completedStacks--;

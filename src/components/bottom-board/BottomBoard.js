@@ -40,7 +40,7 @@ const BottomBoard = ({ drawCards, shouldDraw, setShouldDraw }) => {
 		} else {
 			setMoving({});
 			if (moving.card.value === card.value + 1) {
-				if (nthFromLastCard > 1 && belowCard.value !== moving.card.value + 1) return console.log('gg');
+				if (nthFromLastCard > 1 && belowCard.value !== moving.card.value + 1) return;
 				moveCards(moving.nthFromLastCard, moving.stackId, stackId);
 			} else {
 				alert('Çok dikkat çekiyosun yapma!');
@@ -85,9 +85,6 @@ const BottomBoard = ({ drawCards, shouldDraw, setShouldDraw }) => {
 		let gg = false;
 
 		if (e.target.value === []) gg = true;
-		else {
-			console.log('cards:', e.target.value);
-		}
 	};
 
 	return (

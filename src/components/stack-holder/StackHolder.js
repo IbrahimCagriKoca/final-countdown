@@ -4,7 +4,6 @@ import cardback from '../../assets/cardback.jpg';
 import { times } from 'lodash';
 
 const StackHolder = (isCompleted) => {
-	console.log(isCompleted);
 	return <div className={!isCompleted ? 'completed-stack' : 'stack-holder'}></div>;
 };
 

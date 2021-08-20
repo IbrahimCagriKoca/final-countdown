@@ -26,7 +26,6 @@ const fullDeck = []
 
 const GameUi = () => {
 	const [gameDeck, setGameDeck] = useState(shuffle(fullDeck));
-	// const [gameDeck, setGameDeck] = useState(fullDeck);
 	const [shouldDraw, setShouldDraw] = useState(false);
 	const remainingDrawableStacks = gameDeck.length / 10;
 
