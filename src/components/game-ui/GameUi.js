@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BottomBoard from '../bottom-board/BottomBoard';
 import TopBoard from '../top-board/TopBoard';
+import './gameUi.scss';
 import { shuffle, take } from 'lodash';
 
 const allCardNames = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];

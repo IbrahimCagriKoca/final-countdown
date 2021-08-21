@@ -4,11 +4,11 @@ import Main from './components/main/Main';
 import './index.scss';
 
 function App(props) {
-	return (
-		<div>
-			<Main />
-		</div>
-	);
+    return (
+        <div className='app'>
+            <Main />
+        </div>
+    );
 }
 
 export default hot(App);

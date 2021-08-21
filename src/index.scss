@@ -4,9 +4,13 @@ $primary-color: #005ba4;
 $button-color: #2fb45a;
 
 body {
+    width: 100%;
     margin: 0;
     display: block;
     background-color: $primary-color;
+}
+.app {
+    width: 100%;
 }
 .container {
     display: flex;
