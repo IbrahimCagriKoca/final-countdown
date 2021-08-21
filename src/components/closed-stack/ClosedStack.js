@@ -1,10 +1,8 @@
 import React from 'react';
 import './closedStack.scss';
 
-const ClosedStack = (order) => {
-    let cardSpan = 1000;
-    let leftPositionValue = cardSpan * order;
-    return <div className='closed-stack' style={{ left: `${leftPositionValue}px` }}></div>;
+const ClosedStack = ({ order }) => {
+    return <div className='closed-stack' style={{ left: `${(order + 0.5) * 1.5}vw` }}></div>;
 };
 
 export default ClosedStack;

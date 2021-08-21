@@ -1,9 +1,10 @@
 .top-board {
     position: relative;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    height: 25%;
+    padding: 1vw;
 }
 
 .topboard-container {
@@ -11,5 +12,5 @@
 }
 
 .closed-stacks {
-    width: 500px;
+    width: 25vw;
 }

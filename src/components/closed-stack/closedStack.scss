@@ -1,10 +1,9 @@
 .closed-stack {
     position: absolute;
-    background-image: url('../../assets/cardback.jpg');
+    background-image: url('../../assets/cardback.png');
     background-size: contain;
-    height: 11vw;
+    background-repeat: no-repeat;
+    height: 11.6vw;
     width: 8vw;
-    background-color: red;
-    border: solid 1px gray;
     border-radius: 10px;
 }

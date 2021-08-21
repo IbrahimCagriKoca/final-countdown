@@ -13,7 +13,7 @@ import S10 from '../../assets/10S.png';
 import SJ from '../../assets/JS.png';
 import SQ from '../../assets/QS.png';
 import SK from '../../assets/KS.png';
-import cardback from '../../assets/cardback.jpg';
+import cardback from '../../assets/cardback.png';
 
 const Card = ({ card, order, cardSpan, onCardClick, selectedCardId }) => {
     const { name, isOpen, suit } = card;
@@ -39,7 +39,7 @@ const Card = ({ card, order, cardSpan, onCardClick, selectedCardId }) => {
             onClick={() => isOpen && onCardClick(card, order)}
             style={{
                 zIndex: order,
-                top: order * cardSpan * 0.7,
+                top: `${order * 4}vh`,
                 left: order,
                 backgroundImage: isOpen ? `url(${cardImage})` : `url(${cardback})`,
                 backgroundSize: 'contain',

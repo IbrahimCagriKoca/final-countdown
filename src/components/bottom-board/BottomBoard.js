@@ -43,7 +43,7 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, setShouldDraw }) => {
         if (card.value === 0 || moving.card.value === card.value + 1) {
             moveCards(moving.nthFromLastCard, moving.stackId, stackId);
         } else {
-            alert('Çok dikkat çekiyosun yapma!');
+            return;
         }
     };
 
