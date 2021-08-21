@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BottomBoard from '../bottom-board/BottomBoard';
 import TopBoard from '../top-board/TopBoard';
+import BottomBoardFooter from '../bottom-board-footer/BottomBoardFooter';
 import './gameUi.scss';
 import { shuffle, take } from 'lodash';
 
@@ -29,13 +30,18 @@ const GameUi = () => {
     const [shouldDraw, setShouldDraw] = useState(false);
     const remainingDrawableStacks = gameDeck.length / 10;
     const [completedStacks, setCompletedStacks] = useState(0);
+    const [gameStartedAt, setGameStartedAt] = useState(undefined);
     useEffect(() => {
         if (completedStacks === 8) {
-            alert('Gazandınız');
+            alert(`Gazandınız, oyun ${Math.floor((new Date().getTime() - gameStartedAt) / 1000)} saniye sürdü`);
         }
     }, [completedStacks]);
 
     const drawCards = (n) => {
+        if (n > gameDeck.length) {
+            alert('WTF!!!');
+            return;
+        }
         const drawnCards = take(gameDeck, n);
         setGameDeck(gameDeck.slice(n));
         return drawnCards;
@@ -43,6 +49,10 @@ const GameUi = () => {
 
     const onComplete = () => {
         setCompletedStacks(completedStacks + 1);
+    };
+
+    const startGame = () => {
+        setGameStartedAt(new Date().getTime());
     };
 
     return (
@@ -54,13 +64,16 @@ const GameUi = () => {
                     setShouldDraw(true);
                 }}
                 completedStacks={completedStacks}
+                isGameStarted={gameStartedAt !== undefined}
             />
             <BottomBoard
                 drawCards={drawCards}
                 shouldDraw={shouldDraw}
                 setShouldDraw={setShouldDraw}
                 onComplete={onComplete}
+                isGameStarted={gameStartedAt !== undefined}
             />
+            <BottomBoardFooter onStartGame={startGame} gameStartedAt={gameStartedAt} />
         </div>
     );
 };

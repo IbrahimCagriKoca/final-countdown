@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Stack from '../stack/Stack';
-import { times, isEmpty } from 'lodash';
+import { times } from 'lodash';
 import './bottomBoard.scss';
+import BottomBoardFooter from '../bottom-board-footer/BottomBoardFooter';
 
 const openLastCard = (cards) => {
     if (cards.length > 0) {
@@ -24,7 +25,7 @@ const checkFinished = (cards) => {
     return true;
 };
 
-const BottomBoard = ({ drawCards, shouldDraw, onComplete, setShouldDraw }) => {
+const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShouldDraw }) => {
     const [stackCards, setStackCards] = useState([[], [], [], [], [], [], [], [], [], []]);
     const [moving, setMoving] = useState({});
 
@@ -47,7 +48,7 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, setShouldDraw }) => {
         }
     };
 
-    useEffect(() => {
+    const dealInitialCards = () => {
         let drawnCards = drawCards(54);
         const stacks = [
             openLastCard(drawnCards.splice(0, 6)),
@@ -62,7 +63,13 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, setShouldDraw }) => {
             openLastCard(drawnCards.splice(0, 5)),
         ];
         setStackCards(stacks);
-    }, []);
+    };
+
+    useEffect(() => {
+        if (isGameStarted) {
+            dealInitialCards();
+        }
+    }, [isGameStarted]);
 
     useEffect(() => {
         if (shouldDraw) {
@@ -83,24 +90,28 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, setShouldDraw }) => {
     };
 
     return (
-        <div
-            className='bottom-board'
-            onClick={(e) => {
-                if (!e.target.classList.contains('card')) {
-                    setMoving({});
-                }
-            }}>
-            {times(10, (i) => (
-                <Stack
-                    cards={stackCards[i]}
-                    key={i}
-                    stackId={i}
-                    onSelect={onSelect}
-                    onMove={onMove}
-                    selectedCardId={moving.card && moving.card.id}
-                />
-            ))}
-        </div>
+        <>
+            {isGameStarted && (
+                <div
+                    className='bottom-board'
+                    onClick={(e) => {
+                        if (!e.target.classList.contains('card')) {
+                            setMoving({});
+                        }
+                    }}>
+                    {times(10, (i) => (
+                        <Stack
+                            cards={stackCards[i]}
+                            key={i}
+                            stackId={i}
+                            onSelect={onSelect}
+                            onMove={onMove}
+                            selectedCardId={moving.card && moving.card.id}
+                        />
+                    ))}
+                </div>
+            )}
+        </>
     );
 };
 
