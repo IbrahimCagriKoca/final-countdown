@@ -18,12 +18,17 @@ const Stack = ({ cards, stackId, onSelect, onMove, selectedCardId }) => {
         }
     };
 
+    const _onMove = () => {
+        if (selectedCardId === undefined) return;
+        onMove({ value: 0 }, stackId);
+    };
+
     return (
         <div className='stack'>
             {cards.map((card, i) => (
                 <Card card={card} order={i} cardSpan={20} onCardClick={_onCardClick} selectedCardId={selectedCardId} />
             ))}
-            {cards.length === 0 && <PlaceHolder onClick={() => onMove({ value: 0 }, stackId)} />}
+            {cards.length === 0 && <PlaceHolder onClick={_onMove} />}
         </div>
     );
 };
