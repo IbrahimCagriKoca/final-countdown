@@ -15,23 +15,24 @@ import SQ from '../../assets/QS.png';
 import SK from '../../assets/KS.png';
 import cardback from '../../assets/cardback.png';
 
-const Card = ({ card, order, cardSpan, onCardClick, selectedCardId }) => {
+const cardImageMap = new Map([
+    ['SA', SA],
+    ['S2', S2],
+    ['S3', S3],
+    ['S4', S4],
+    ['S5', S5],
+    ['S6', S6],
+    ['S7', S7],
+    ['S8', S8],
+    ['S9', S9],
+    ['S10', S10],
+    ['SJ', SJ],
+    ['SQ', SQ],
+    ['SK', SK],
+]);
+
+const Card = ({ card, order, onCardClick, selectedCardId }) => {
     const { name, isOpen, suit } = card;
-    const cardImageMap = new Map([
-        ['SA', SA],
-        ['S2', S2],
-        ['S3', S3],
-        ['S4', S4],
-        ['S5', S5],
-        ['S6', S6],
-        ['S7', S7],
-        ['S8', S8],
-        ['S9', S9],
-        ['S10', S10],
-        ['SJ', SJ],
-        ['SQ', SQ],
-        ['SK', SK],
-    ]);
     const cardImage = cardImageMap.get(`${suit}${name}`);
     return (
         <div
@@ -39,7 +40,7 @@ const Card = ({ card, order, cardSpan, onCardClick, selectedCardId }) => {
             onClick={() => isOpen && onCardClick(card, order)}
             style={{
                 zIndex: order,
-                top: `${order * 4}vh`,
+                top: `${order * 2}vw`,
                 left: order,
                 backgroundImage: isOpen ? `url(${cardImage})` : `url(${cardback})`,
                 backgroundSize: 'contain',
