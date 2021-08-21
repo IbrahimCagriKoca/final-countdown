@@ -15,7 +15,7 @@ const TopBoard = ({ closedStackCount, onDrawClick, completedStacks, isGameStarte
             </div>
             <div className='topboard-container'>
                 {times(placeHolderCount, (i) => (
-                    <StackHolder key={i} isCompleted={i < completedStacks} />
+                    <StackHolder key={i} isCompleted={!(placeHolderCount - i > completedStacks)} />
                 ))}
             </div>
         </div>

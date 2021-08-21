@@ -1,15 +1,16 @@
-.stack-holder {
-    height: 11vw;
-    width: 8vw;
-    border: solid 1px gray;
+.uncompleted-holder {
+    height: 8.4vw;
+    width: 5.6vw;
+    margin-left: 1vw ;
+    border: solid 0.3vw #618b98;
     border-radius: 10px;
 }
 
 .completed-stack {
-    height: 11vw;
-    width: 8vw;
-    background-image: url(../../assets/cardback.jpg);
+    height: 9vw;
+    width: 6vw;
+    margin-left: 1vw ;
+    background-image: url(../../assets/AS.png);
     background-size: contain;
-    border: solid 1px gray;
-    border-radius: 10px;
+    background-repeat: no-repeat;
 }

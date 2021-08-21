@@ -32,7 +32,9 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShou
     const dealNewCards = () => {
         let drawnCards = drawCards(10);
         setShouldDraw(false);
-        setStackCards(stackCards.map((cards, i) => [...cards, { ...drawnCards[i], isOpen: true }]));
+        setStackCards(
+            stackCards.map((cards, i) => checkAndRemoveFinished([...cards, { ...drawnCards[i], isOpen: true }]))
+        );
     };
 
     const onSelect = (card, nthFromLastCard, stackId) => {
@@ -77,15 +79,20 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShou
         }
     }, [shouldDraw]);
 
+    const checkAndRemoveFinished = (stack) => {
+        if (checkFinished(stack)) {
+            stack.splice(-13);
+            openLastCard(stack);
+            onComplete();
+        }
+        return stack;
+    };
+
     const moveCards = (n, from, to) => {
         let newStackCards = [...stackCards];
         newStackCards[to] = [...newStackCards[to], ...newStackCards[from].splice(-1 * n)];
         openLastCard(newStackCards[from]);
-        if (checkFinished(newStackCards[to])) {
-            newStackCards[to].splice(-13);
-            openLastCard(newStackCards[to]);
-            onComplete();
-        }
+        checkAndRemoveFinished(newStackCards[to]);
         setStackCards(newStackCards);
     };
 

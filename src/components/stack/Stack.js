@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDrop } from 'react-dnd';
 import Card from '../card/Card';
 import PlaceHolder from '../place-holder/PlaceHolder';
 import './stack.scss';
@@ -22,6 +23,8 @@ const Stack = ({ cards, stackId, onSelect, onMove, selectedCardId }) => {
         if (selectedCardId === undefined) return;
         onMove({ value: 0 }, stackId);
     };
+
+    // const onDrop = () => {};
 
     return (
         <div className='stack'>

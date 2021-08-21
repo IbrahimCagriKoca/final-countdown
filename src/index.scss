@@ -7,7 +7,9 @@ body {
     width: 100%;
     margin: 0;
     display: block;
-    background-color: $primary-color;
+    background-image:url(./assets/background.jpg);
+    background-size: 100vw 100%;
+    background-repeat: no-repeat;
 }
 .app {
     width: 100%;

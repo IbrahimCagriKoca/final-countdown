@@ -40,7 +40,7 @@ const Card = ({ card, order, onCardClick, selectedCardId }) => {
             onClick={() => isOpen && onCardClick(card, order)}
             style={{
                 zIndex: order,
-                top: `${order * 2}vw`,
+                top: `${order * 1.5}vw`,
                 left: order,
                 backgroundImage: isOpen ? `url(${cardImage})` : `url(${cardback})`,
                 backgroundSize: 'contain',
