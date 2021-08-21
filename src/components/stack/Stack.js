@@ -1,19 +1,31 @@
 import React from 'react';
 import Card from '../card/Card';
+import PlaceHolder from '../place-holder/PlaceHolder';
 import './stack.scss';
 
-const Stack = ({ cards, stackId, onCardClick, selectedCardId, isPlaceHolder }) => {
-	const _onCardClick = (card, order) => {
-		onCardClick(card, cards.length - order, stackId, cards.length - order > 1 ? cards[order + 1] : '');
-	};
+const Stack = ({ cards, stackId, onSelect, onMove, selectedCardId }) => {
+    const _onCardClick = (card, order) => {
+        if (selectedCardId === undefined) {
+            if (!card.isOpen) return;
+            let i = order + 1;
+            while (i < cards.length) {
+                if (cards[i].value !== cards[i - 1].value + 1) return;
+                i++;
+            }
+            onSelect(card, cards.length - order, stackId);
+        } else {
+            onMove(cards[cards.length - 1], stackId);
+        }
+    };
 
-	return (
-		<div className='stack' onClick={isPlaceHolder}>
-			{cards.map((card, i) => (
-				<Card card={card} order={i} cardSpan={20} onCardClick={_onCardClick} selectedCardId={selectedCardId} />
-			))}
-		</div>
-	);
+    return (
+        <div className='stack'>
+            {cards.map((card, i) => (
+                <Card card={card} order={i} cardSpan={20} onCardClick={_onCardClick} selectedCardId={selectedCardId} />
+            ))}
+            {cards.length === 0 && <PlaceHolder onClick={() => onMove({ value: 0 }, stackId)} />}
+        </div>
+    );
 };
 
 export default Stack;

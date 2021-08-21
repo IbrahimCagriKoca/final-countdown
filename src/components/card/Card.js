@@ -16,35 +16,35 @@ import SK from '../../assets/KS.png';
 import cardback from '../../assets/cardback.jpg';
 
 const Card = ({ card, order, cardSpan, onCardClick, selectedCardId }) => {
-	const { name, isOpen, suit } = card;
-	const cardImageMap = new Map([
-		['SA', SA],
-		['S2', S2],
-		['S3', S3],
-		['S4', S4],
-		['S5', S5],
-		['S6', S6],
-		['S7', S7],
-		['S8', S8],
-		['S9', S9],
-		['S10', S10],
-		['SJ', SJ],
-		['SQ', SQ],
-		['SK', SK],
-	]);
-	const cardImage = cardImageMap.get(`${suit}${name}`);
-	return (
-		<div
-			className={`card${card.id === selectedCardId ? ' selected' : ''}`}
-			onClick={() => isOpen && onCardClick(card, order)}
-			style={{
-				zIndex: order,
-				top: order * cardSpan * 1.5,
-				left: order,
-				backgroundImage: isOpen ? `url(${cardImage})` : `url(${cardback})`,
-				backgroundSize: 'contain',
-			}}></div>
-	);
+    const { name, isOpen, suit } = card;
+    const cardImageMap = new Map([
+        ['SA', SA],
+        ['S2', S2],
+        ['S3', S3],
+        ['S4', S4],
+        ['S5', S5],
+        ['S6', S6],
+        ['S7', S7],
+        ['S8', S8],
+        ['S9', S9],
+        ['S10', S10],
+        ['SJ', SJ],
+        ['SQ', SQ],
+        ['SK', SK],
+    ]);
+    const cardImage = cardImageMap.get(`${suit}${name}`);
+    return (
+        <div
+            className={`card${card.id === selectedCardId ? ' selected' : ''}`}
+            onClick={() => isOpen && onCardClick(card, order)}
+            style={{
+                zIndex: order,
+                top: order * cardSpan * 1.5,
+                left: order,
+                backgroundImage: isOpen ? `url(${cardImage})` : `url(${cardback})`,
+                backgroundSize: 'contain',
+            }}></div>
+    );
 };
 
 export default Card;
