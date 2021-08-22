@@ -24,6 +24,31 @@ export const checkFinished = (cards) => {
     return true;
 };
 
+export const prepareInitialBoard = (drawnCards) => {
+    return [
+        openLastCard(drawnCards.splice(0, 6)),
+        openLastCard(drawnCards.splice(0, 6)),
+        openLastCard(drawnCards.splice(0, 6)),
+        openLastCard(drawnCards.splice(0, 6)),
+        openLastCard(drawnCards.splice(0, 5)),
+        openLastCard(drawnCards.splice(0, 5)),
+        openLastCard(drawnCards.splice(0, 5)),
+        openLastCard(drawnCards.splice(0, 5)),
+        openLastCard(drawnCards.splice(0, 5)),
+        openLastCard(drawnCards.splice(0, 5)),
+    ];
+};
+
+export const checkAndRemoveFinished = (stack, onComplete) => {
+    if (checkFinished(stack)) {
+        stack.splice(-13);
+        openLastCard(stack);
+        onComplete();
+        return stack;
+    }
+    return stack;
+};
+
 const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShouldDraw }) => {
     const [stackCards, setStackCards] = useState([[], [], [], [], [], [], [], [], [], []]);
     const [moving, setMoving] = useState({});
@@ -32,7 +57,9 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShou
         let drawnCards = drawCards(10);
         setShouldDraw(false);
         setStackCards(
-            stackCards.map((cards, i) => checkAndRemoveFinished([...cards, { ...drawnCards[i], isOpen: true }]))
+            stackCards.map((cards, i) =>
+                checkAndRemoveFinished([...cards, { ...drawnCards[i], isOpen: true }], onComplete)
+            )
         );
     };
 
@@ -59,18 +86,8 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShou
 
     const dealInitialCards = () => {
         let drawnCards = drawCards(54);
-        const stacks = [
-            openLastCard(drawnCards.splice(0, 6)),
-            openLastCard(drawnCards.splice(0, 6)),
-            openLastCard(drawnCards.splice(0, 6)),
-            openLastCard(drawnCards.splice(0, 6)),
-            openLastCard(drawnCards.splice(0, 5)),
-            openLastCard(drawnCards.splice(0, 5)),
-            openLastCard(drawnCards.splice(0, 5)),
-            openLastCard(drawnCards.splice(0, 5)),
-            openLastCard(drawnCards.splice(0, 5)),
-            openLastCard(drawnCards.splice(0, 5)),
-        ];
+        console.log(drawnCards);
+        const stacks = prepareInitialBoard(drawnCards);
         setStackCards(stacks);
     };
 
@@ -86,21 +103,11 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShou
         }
     }, [shouldDraw]);
 
-    const checkAndRemoveFinished = (stack) => {
-        if (checkFinished(stack)) {
-            stack.splice(-13);
-            openLastCard(stack);
-            onComplete();
-            return stack;
-        }
-        return stack;
-    };
-
     const moveCards = (n, from, to) => {
         let newStackCards = [...stackCards];
         newStackCards[to] = [...newStackCards[to], ...newStackCards[from].splice(-1 * n)];
         openLastCard(newStackCards[from]);
-        checkAndRemoveFinished(newStackCards[to]);
+        checkAndRemoveFinished(newStackCards[to], onComplete);
         setStackCards(newStackCards);
     };
 
