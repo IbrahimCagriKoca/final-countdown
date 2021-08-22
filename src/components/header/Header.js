@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './header.scss';
 
-const BottomBoardFooter = ({ onStartGame, gameStartedAt }) => {
+const Header = ({ onStartGame, gameStartedAt, isGameFinished }) => {
+    const [counter, setCounter] = useState(0);
+    const worstRestartEver = () => {
+        window.location.reload();
+    };
+    useEffect(() => {
+        if (gameStartedAt && !isGameFinished) {
+            setTimeout(() => setCounter(counter + 1), 1000);
+        }
+    }, [counter, gameStartedAt, isGameFinished]);
     return (
         <header className='header'>
+            <span>Counter : {counter}</span>
+            <span>Score : 390</span>
             {!gameStartedAt && (
-                <button className='start-game-button' onClick={onStartGame}>
+                <button className='game-button' onClick={onStartGame}>
                     Start Game
                 </button>
             )}
             {gameStartedAt && (
                 <>
-                    <span style={{ color: 'white' }}>{new Date(gameStartedAt).toString()}</span>
+                    <button className='game-button' onClick={worstRestartEver}>
+                        Start New Game
+                    </button>
                 </>
             )}
         </header>
     );
 };
 
-export default BottomBoardFooter;
+export default Header;
