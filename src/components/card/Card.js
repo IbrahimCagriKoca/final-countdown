@@ -14,7 +14,7 @@ import S10 from '../../assets/10S.png';
 import SJ from '../../assets/JS.png';
 import SQ from '../../assets/QS.png';
 import SK from '../../assets/KS.png';
-import cardback from '../../assets/cardback.png';
+import cardback from '../../assets/cardback-min.png';
 
 const cardImageMap = new Map([
     ['SA', SA],

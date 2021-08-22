@@ -1,9 +1,9 @@
 import React from 'react';
-import './bottomBoardFooter.scss';
+import './header.scss';
 
 const BottomBoardFooter = ({ onStartGame, gameStartedAt }) => {
     return (
-        <footer className='footer'>
+        <header className='header'>
             {!gameStartedAt && (
                 <button className='start-game-button' onClick={onStartGame}>
                     Start Game
@@ -14,7 +14,7 @@ const BottomBoardFooter = ({ onStartGame, gameStartedAt }) => {
                     <span style={{ color: 'white' }}>{new Date(gameStartedAt).toString()}</span>
                 </>
             )}
-        </footer>
+        </header>
     );
 };
 

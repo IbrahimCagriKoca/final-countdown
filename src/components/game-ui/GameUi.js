@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BottomBoard from '../bottom-board/BottomBoard';
 import TopBoard from '../top-board/TopBoard';
-import BottomBoardFooter from '../bottom-board-footer/BottomBoardFooter';
+import Header from '../header/Header';
 import './gameUi.scss';
 import { shuffle, take } from 'lodash';
 
@@ -72,7 +72,7 @@ const GameUi = () => {
                 onComplete={onComplete}
                 isGameStarted={gameStartedAt !== undefined}
             />
-            <BottomBoardFooter onStartGame={startGame} gameStartedAt={gameStartedAt} />
+            <Header onStartGame={startGame} gameStartedAt={gameStartedAt} />
         </div>
     );
 };
