@@ -33,7 +33,7 @@ const GameUi = () => {
     const [gameScore, setGameScore] = useState(0);
     const remainingDrawableStacks = gameDeck.length / 10;
     const [completedStacks, setCompletedStacks] = useState(0);
-    const [gameStartedAt, setGameStartedAt] = useState(undefined);
+    const [isGameStarted, setIsGameStarted] = useState(false);
     useEffect(() => {
         if (completedStacks === 8) {
             setIsGameFinished(true);
@@ -56,7 +56,7 @@ const GameUi = () => {
     };
 
     const startGame = () => {
-        setGameStartedAt(new Date().getTime());
+        setIsGameStarted(true);
     };
 
     return (
@@ -67,18 +67,18 @@ const GameUi = () => {
                     setShouldDraw(true);
                 }}
                 completedStacks={completedStacks}
-                isGameStarted={gameStartedAt !== undefined}
+                isGameStarted={isGameStarted}
             />
             <BottomBoard
                 drawCards={drawCards}
                 shouldDraw={shouldDraw}
                 setShouldDraw={setShouldDraw}
                 onComplete={onComplete}
-                isGameStarted={gameStartedAt !== undefined}
+                isGameStarted={isGameStarted}
             />
             <Header
                 onStartGame={startGame}
-                gameStartedAt={gameStartedAt}
+                isGameStarted={isGameStarted}
                 isGameFinished={isGameFinished}
                 gameScore={gameScore}
                 setGameScore={setGameScore}

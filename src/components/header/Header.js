@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import './header.scss';
 
-const Header = ({ onStartGame, gameStartedAt, isGameFinished, gameScore, setGameScore, completedStacks }) => {
+const Header = ({ onStartGame, isGameStarted, isGameFinished, gameScore, setGameScore, completedStacks }) => {
     const [counter, setCounter] = useState(0);
+    const [seconds, setSeconds] = useState(0);
+    const [minutes, setMinutes] = useState(0);
+    const [hours, setHours] = useState(0);
+
+    const stringify = (string, n) => {
+        string = string.toLocaleString('en-US', {
+            minimumIntegerDigits: n,
+            useGrouping: false,
+        });
+        return string;
+    };
+
     const worstRestartEver = () => {
         window.location.reload();
     };
@@ -12,20 +24,26 @@ const Header = ({ onStartGame, gameStartedAt, isGameFinished, gameScore, setGame
     }, [completedStacks]);
 
     useEffect(() => {
-        if (gameStartedAt && !isGameFinished) {
+        if (isGameStarted && !isGameFinished) {
             setTimeout(() => setCounter(counter + 1), 1000);
+            setSeconds(counter % 60);
+            setMinutes(Math.floor(counter / 60));
+            setHours(Math.floor(counter / 60 / 60));
         }
-    }, [counter, gameStartedAt, isGameFinished]);
+    }, [counter, isGameStarted, isGameFinished]);
+
     return (
         <header className='header'>
-            <span>Counter : {counter}</span>
-            <span>Score : {gameScore}</span>
-            {!gameStartedAt && (
+            <span className='counter'>
+                {stringify(hours, 2)}:{stringify(minutes, 2)}:{stringify(seconds, 2)}
+            </span>
+            <span>Score : {stringify(gameScore, 4)}</span>
+            {!isGameStarted && (
                 <button className='game-button' onClick={onStartGame}>
                     Start Game
                 </button>
             )}
-            {gameStartedAt && (
+            {isGameStarted && (
                 <>
                     <button className='game-button' onClick={worstRestartEver}>
                         Start New Game
