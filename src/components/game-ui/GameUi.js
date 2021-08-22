@@ -38,13 +38,13 @@ const GameUi = () => {
     }, [completedStacks]);
 
     const drawCards = (n) => {
-        if (n > gameDeck.length) {
-            alert('WTF!!!');
-            return;
+        try {
+            const drawnCards = take(gameDeck, n);
+            setGameDeck(gameDeck.slice(n));
+            return drawnCards;
+        } catch (error) {
+            alert('Error on draw card:' + error);
         }
-        const drawnCards = take(gameDeck, n);
-        setGameDeck(gameDeck.slice(n));
-        return drawnCards;
     };
 
     const onComplete = () => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import './card.scss';
+import { useDrag } from 'react-dnd';
 import SA from '../../assets/AS.png';
 import S2 from '../../assets/2S.png';
 import S3 from '../../assets/3S.png';
@@ -31,13 +32,23 @@ const cardImageMap = new Map([
     ['SK', SK],
 ]);
 
-const Card = ({ card, order, onCardClick, selectedCardId }) => {
+const Card = ({ card, order, onCardClick, selectedCardId, dragItem, isCardMovable }) => {
     const { name, isOpen, suit } = card;
     const cardImage = cardImageMap.get(`${suit}${name}`);
+    const [, drag] = useDrag(
+        () => ({
+            type: 'card',
+            item: dragItem,
+            canDrag: isCardMovable,
+        }),
+        [dragItem, isCardMovable]
+    );
+
     return (
         <div
+            ref={drag}
             className={`card${card.id === selectedCardId ? ' selected' : ''}`}
-            onClick={() => isOpen && onCardClick(card, order)}
+            onClick={() => isCardMovable && onCardClick(card, order)}
             style={{
                 zIndex: order,
                 top: `${order * 1.5}vw`,

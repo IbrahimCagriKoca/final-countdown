@@ -5,7 +5,3 @@ import App from './app';
 const rootEl = document.getElementById('app');
 
 render(<App />, rootEl);
-
-if (module.hot) {
-    module.hot.accept();
-}

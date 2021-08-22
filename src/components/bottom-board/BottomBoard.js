@@ -6,8 +6,8 @@ import './bottomBoard.scss';
 export const openLastCard = (cards) => {
     if (cards.length > 0) {
         cards[cards.length - 1].isOpen = true;
-        return cards;
     }
+    return cards;
 };
 
 export const checkFinished = (cards) => {
@@ -49,6 +49,14 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShou
         }
     };
 
+    const onDrag = (n, from, to) => {
+        if (to.card.value === 0 || from.card.value === to.card.value + 1) {
+            moveCards(n, from.stackId, to.stackId);
+        } else {
+            return;
+        }
+    };
+
     const dealInitialCards = () => {
         let drawnCards = drawCards(54);
         const stacks = [
@@ -83,6 +91,7 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShou
             stack.splice(-13);
             openLastCard(stack);
             onComplete();
+            return stack;
         }
         return stack;
     };
@@ -112,6 +121,7 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShou
                             stackId={i}
                             onSelect={onSelect}
                             onMove={onMove}
+                            onDrag={onDrag}
                             selectedCardId={moving.card && moving.card.id}
                         />
                     ))}
