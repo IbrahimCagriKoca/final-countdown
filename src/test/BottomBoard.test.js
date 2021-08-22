@@ -128,14 +128,12 @@ describe('check funtions', () => {
     it('should return false if last 13 card is not opened', () => {
         let faultyStack = [...mockedCardStack];
         faultyStack[14].isOpen = false;
-        const result2 = checkFinished(faultyStack);
-        console.log(result2);
-        expect(result2).toBeFalsy();
+        const result = checkFinished(faultyStack);
+        expect(result).toBeFalsy();
     });
     it('should return false if card lenght lower than 13', () => {
         let faultyStack = [...mockedCardStack].splice(5);
-        const result2 = checkFinished(faultyStack);
-        console.log(result2);
-        expect(result2).toBeFalsy();
+        const result = checkFinished(faultyStack);
+        expect(result).toBeFalsy();
     });
 });
