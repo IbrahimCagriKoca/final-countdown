@@ -30,13 +30,14 @@ const GameUi = () => {
     const [gameDeck, setGameDeck] = useState(shuffle(fullDeck));
     const [shouldDraw, setShouldDraw] = useState(false);
     const [isGameFinished, setIsGameFinished] = useState(false);
+    const [gameScore, setGameScore] = useState(0);
     const remainingDrawableStacks = gameDeck.length / 10;
     const [completedStacks, setCompletedStacks] = useState(0);
     const [gameStartedAt, setGameStartedAt] = useState(undefined);
     useEffect(() => {
         if (completedStacks === 8) {
             setIsGameFinished(true);
-            alert(`Gazandınız, oyun ${Math.floor((new Date().getTime() - gameStartedAt) / 1000)} saniye sürdü`);
+            alert(`Gazandınız, Puanınız: ${gameScore} `);
         }
     }, [completedStacks]);
 
@@ -75,7 +76,14 @@ const GameUi = () => {
                 onComplete={onComplete}
                 isGameStarted={gameStartedAt !== undefined}
             />
-            <Header onStartGame={startGame} gameStartedAt={gameStartedAt} isGameFinished={isGameFinished} />
+            <Header
+                onStartGame={startGame}
+                gameStartedAt={gameStartedAt}
+                isGameFinished={isGameFinished}
+                gameScore={gameScore}
+                setGameScore={setGameScore}
+                completedStacks={completedStacks}
+            />
         </div>
     );
 };
