@@ -27,11 +27,18 @@ const Stack = ({ cards, stackId, onSelect, onMove, selectedCardId }) => {
     // const onDrop = () => {};
 
     return (
-        <div className='stack'>
+        <div key={`stack-${stackId}`} className='stack'>
             {cards.map((card, i) => (
-                <Card card={card} order={i} cardSpan={20} onCardClick={_onCardClick} selectedCardId={selectedCardId} />
+                <Card
+                    card={card}
+                    order={i}
+                    cardSpan={20}
+                    onCardClick={_onCardClick}
+                    selectedCardId={selectedCardId}
+                    key={card.id}
+                />
             ))}
-            {cards.length === 0 && <PlaceHolder onClick={_onMove} />}
+            {cards.length === 0 && <PlaceHolder onClick={_onMove} stackId={stackId} />}
         </div>
     );
 };

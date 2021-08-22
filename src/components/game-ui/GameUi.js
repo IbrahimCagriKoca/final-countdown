@@ -59,7 +59,6 @@ const GameUi = () => {
         <div className='game-ui'>
             <TopBoard
                 closedStackCount={remainingDrawableStacks}
-                drawCards={drawCards}
                 onDrawClick={() => {
                     setShouldDraw(true);
                 }}

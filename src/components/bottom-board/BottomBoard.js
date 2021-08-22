@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Stack from '../stack/Stack';
 import { times } from 'lodash';
 import './bottomBoard.scss';
-import BottomBoardFooter from '../bottom-board-footer/BottomBoardFooter';
 
-const openLastCard = (cards) => {
+export const openLastCard = (cards) => {
     if (cards.length > 0) {
         cards[cards.length - 1].isOpen = true;
         return cards;
     }
 };
 
-const checkFinished = (cards) => {
+export const checkFinished = (cards) => {
     if (cards.length < 13) {
         return false;
     }
@@ -97,7 +96,7 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShou
     };
 
     return (
-        <>
+        <div className='bottom-board-container'>
             {isGameStarted && (
                 <div
                     className='bottom-board'
@@ -108,8 +107,8 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShou
                     }}>
                     {times(10, (i) => (
                         <Stack
+                            key={`stack-${i}`}
                             cards={stackCards[i]}
-                            key={i}
                             stackId={i}
                             onSelect={onSelect}
                             onMove={onMove}
@@ -118,7 +117,7 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShou
                     ))}
                 </div>
             )}
-        </>
+        </div>
     );
 };
 
