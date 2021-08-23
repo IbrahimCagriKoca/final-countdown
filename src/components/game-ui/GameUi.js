@@ -37,7 +37,7 @@ const GameUi = () => {
     useEffect(() => {
         if (completedStacks === 8) {
             setIsGameFinished(true);
-            alert(`Gazandınız, Puanınız: ${gameScore} `);
+            setTimeout(() => alert(`Gazandınız, Puanınız: ${gameScore} `), 1000);
         }
     }, [completedStacks]);
 

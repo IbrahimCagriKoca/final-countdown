@@ -41,15 +41,13 @@ const Header = ({ onStartGame, isGameStarted, isGameFinished, gameScore, setGame
             <span>Score : {stringify(gameScore, 4)}</span>
             {!isGameStarted && (
                 <button className='game-button' onClick={onStartGame}>
-                    Start Game
+                    Start
                 </button>
             )}
             {isGameStarted && (
-                <>
-                    <button className='game-button' onClick={worstRestartEver}>
-                        Start New Game
-                    </button>
-                </>
+                <button className='game-button' onClick={worstRestartEver}>
+                    New Game
+                </button>
             )}
         </header>
     );
