@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Counter from '../counter/Counter';
 import './header.scss';
+import { HUNDRED_MINUTES_IN_SECONDS } from '../constants';
 
 export const stringify = (string, n) => {
     string = string.toLocaleString('en-US', {
@@ -15,30 +17,20 @@ export const worstRestartEver = () => {
 
 const Header = ({ onStartGame, isGameStarted, isGameFinished, gameScore, setGameScore, completedStacks }) => {
     const [counter, setCounter] = useState(0);
-    const [seconds, setSeconds] = useState(0);
-    const [minutes, setMinutes] = useState(0);
-    const [hours, setHours] = useState(0);
 
     useEffect(() => {
-        let gamePoints = counter === 0 ? 0 : Math.floor((6000 - counter) / 10);
+        let gamePoints = counter === 0 ? 0 : Math.floor((HUNDRED_MINUTES_IN_SECONDS - counter) / 10);
         setGameScore(gameScore + gamePoints);
     }, [completedStacks]);
-
-    useEffect(() => {
-        if (isGameStarted && !isGameFinished) {
-            setTimeout(() => setCounter(counter + 1), 1000);
-            setSeconds(counter % 60);
-            setMinutes(Math.floor(counter / 60));
-            setHours(Math.floor(counter / 60 / 60));
-        }
-    }, [counter, isGameStarted, isGameFinished]);
-
     return (
         <header className='header'>
-            <span className='counter'>
-                {stringify(hours, 2)}:{stringify(minutes, 2)}:{stringify(seconds, 2)}
-            </span>
-            <span>Score : {stringify(gameScore, 4)}</span>
+            <Counter
+                isGameStarted={isGameStarted}
+                isGameFinished={isGameFinished}
+                counter={counter}
+                setCounter={setCounter}
+            />
+            <span>Score : {stringify(gameScore, 3)}</span>
             {!isGameStarted && (
                 <button className='game-button' onClick={onStartGame}>
                     Start

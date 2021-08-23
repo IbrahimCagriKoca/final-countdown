@@ -2,59 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Stack from '../stack/Stack';
 import { times } from 'lodash';
 import './bottomBoard.scss';
-
-export const openLastCard = (cards) => {
-    if (cards.length > 0) {
-        cards[cards.length - 1].isOpen = true;
-    }
-    return cards;
-};
-
-export const checkFinished = (cards) => {
-    if (cards.length < 13) {
-        return false;
-    }
-    const last13 = cards.slice(cards.length - 13);
-    for (let i = 0; i < 13; i++) {
-        if (!last13[i].isOpen) return false;
-        if (last13[i].value !== i + 1) {
-            return false;
-        }
-    }
-    return true;
-};
-
-export const prepareInitialBoard = (drawnCards) => {
-    return [
-        openLastCard(drawnCards.splice(0, 6)),
-        openLastCard(drawnCards.splice(0, 6)),
-        openLastCard(drawnCards.splice(0, 6)),
-        openLastCard(drawnCards.splice(0, 6)),
-        openLastCard(drawnCards.splice(0, 5)),
-        openLastCard(drawnCards.splice(0, 5)),
-        openLastCard(drawnCards.splice(0, 5)),
-        openLastCard(drawnCards.splice(0, 5)),
-        openLastCard(drawnCards.splice(0, 5)),
-        openLastCard(drawnCards.splice(0, 5)),
-    ];
-};
-
-export const checkAndRemoveFinished = (stack, onComplete) => {
-    if (checkFinished(stack)) {
-        stack.splice(-13);
-        openLastCard(stack);
-        onComplete();
-        return stack;
-    }
-    return stack;
-};
+import { BOARD_STACK_COUNT, INITIAL_BOARD_CARD_COUNT } from '../constants';
+import { openLastCard, checkAndRemoveFinished, prepareInitialBoard } from '../helperFuntions';
 
 const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShouldDraw }) => {
     const [stackCards, setStackCards] = useState([[], [], [], [], [], [], [], [], [], []]);
     const [moving, setMoving] = useState({});
 
     const dealNewCards = () => {
-        let drawnCards = drawCards(10);
+        let drawnCards = drawCards(BOARD_STACK_COUNT);
         setShouldDraw(false);
         setStackCards(
             stackCards.map((cards, i) =>
@@ -85,8 +41,7 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShou
     };
 
     const dealInitialCards = () => {
-        let drawnCards = drawCards(54);
-        console.log(drawnCards);
+        let drawnCards = drawCards(INITIAL_BOARD_CARD_COUNT);
         const stacks = prepareInitialBoard(drawnCards);
         setStackCards(stacks);
     };
@@ -121,7 +76,7 @@ const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShou
                             setMoving({});
                         }
                     }}>
-                    {times(10, (i) => (
+                    {times(BOARD_STACK_COUNT, (i) => (
                         <Stack
                             key={`stack-${i}`}
                             cards={stackCards[i]}

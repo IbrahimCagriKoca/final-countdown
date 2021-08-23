@@ -4,16 +4,7 @@ import Card from '../card/Card';
 import PlaceHolder from '../place-holder/PlaceHolder';
 import { last } from 'lodash';
 import './stack.scss';
-
-export const isCardMovable = (order, cards) => {
-    if (!cards[order].isOpen) return false;
-    let i = order + 1;
-    while (i < cards.length) {
-        if (cards[i].value !== cards[i - 1].value + 1) return false;
-        i++;
-    }
-    return true;
-};
+import { isCardMovable } from '../helperFuntions';
 
 const Stack = ({ cards, stackId, onSelect, onMove, onDrag, selectedCardId }) => {
     const [, drop] = useDrop(

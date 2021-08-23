@@ -1,4 +1,4 @@
-import Stack, { isCardMovable } from '../components/stack/Stack';
+import Stack from '../components/stack/Stack';
 import React from 'react';
 import { render } from '@testing-library/react';
 import { DndProvider } from 'react-dnd';
@@ -58,21 +58,5 @@ describe('check html tags', () => {
             </DndProvider>
         );
         expect(firstChild.className).toBe('stack');
-    });
-});
-describe('check functions working right', () => {
-    it('should return true for isCardMovable', () => {
-        const result = isCardMovable(2, mockedCardStack);
-        expect(result).toBeTruthy();
-    });
-    it('should return false for isCardMovable', () => {
-        const result = isCardMovable(1, mockedCardStack);
-        expect(result).toBeFalsy();
-    });
-    it('should return false for isCardMovable', () => {
-        let faultyStack = [...mockedCardStack];
-        faultyStack[faultyStack.length - 1].value = 10;
-        const result = isCardMovable(2, mockedCardStack);
-        expect(result).toBeFalsy();
     });
 });

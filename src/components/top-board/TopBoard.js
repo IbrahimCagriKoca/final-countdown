@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { times } from 'lodash';
 import ClosedStack from '../closed-stack/ClosedStack';
 import StackHolder from '../stack-holder/StackHolder';
 import './topBoard.scss';
+import { DECK_SET_COUNT } from '../constants';
 
 const TopBoard = ({ closedStackCount, onDrawClick, completedStacks, isGameStarted }) => {
-    const placeHolderCount = 8;
     return (
         <div className='top-board'>
             <div className='closed-stacks'>
@@ -14,8 +14,8 @@ const TopBoard = ({ closedStackCount, onDrawClick, completedStacks, isGameStarte
                 ))}
             </div>
             <div className='stack-holder'>
-                {times(placeHolderCount, (i) => (
-                    <StackHolder key={i} isCompleted={!(placeHolderCount - i > completedStacks)} />
+                {times(DECK_SET_COUNT, (i) => (
+                    <StackHolder key={i} isCompleted={!(DECK_SET_COUNT - i > completedStacks)} />
                 ))}
             </div>
         </div>

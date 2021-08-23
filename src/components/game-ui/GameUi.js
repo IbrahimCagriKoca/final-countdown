@@ -5,38 +5,18 @@ import Header from '../header/Header';
 import './gameUi.scss';
 import { shuffle, take } from 'lodash';
 import EndGamePopup from '../end-game-popup/EndGamePopup';
-
-const allCardNames = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-
-let fullDeck = []
-    .concat(
-        allCardNames,
-        allCardNames,
-        allCardNames,
-        allCardNames,
-        allCardNames,
-        allCardNames,
-        allCardNames,
-        allCardNames
-    )
-    .map((name, i) => ({
-        id: i,
-        value: (i % 13) + 1,
-        name,
-        suit: 'S',
-        isOpen: false,
-    }));
+import { getFullDeck, BOARD_STACK_COUNT, DECK_SET_COUNT } from '../constants';
 
 const GameUi = () => {
-    const [gameDeck, setGameDeck] = useState(shuffle(fullDeck));
+    const [gameDeck, setGameDeck] = useState(shuffle(getFullDeck()));
     const [shouldDraw, setShouldDraw] = useState(false);
     const [isGameFinished, setIsGameFinished] = useState(false);
     const [gameScore, setGameScore] = useState(0);
-    const remainingDrawableStacks = gameDeck.length / 10;
+    const remainingDrawableStacks = gameDeck.length / BOARD_STACK_COUNT;
     const [completedStacks, setCompletedStacks] = useState(0);
     const [isGameStarted, setIsGameStarted] = useState(false);
     useEffect(() => {
-        if (completedStacks === 8) {
+        if (completedStacks === DECK_SET_COUNT) {
             setIsGameFinished(true);
         }
     }, [completedStacks]);
