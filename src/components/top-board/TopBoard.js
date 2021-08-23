@@ -8,12 +8,12 @@ const TopBoard = ({ closedStackCount, onDrawClick, completedStacks, isGameStarte
     const placeHolderCount = 8;
     return (
         <div className='top-board'>
-            <div className='topboard-container closed-stacks'>
+            <div className='closed-stacks'>
                 {times(closedStackCount, (i) => (
                     <ClosedStack onClick={isGameStarted ? onDrawClick : () => {}} key={i} order={i} />
                 ))}
             </div>
-            <div className='topboard-container'>
+            <div className='stack-holder'>
                 {times(placeHolderCount, (i) => (
                     <StackHolder key={i} isCompleted={!(placeHolderCount - i > completedStacks)} />
                 ))}

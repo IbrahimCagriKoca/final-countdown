@@ -7,10 +7,14 @@
     padding: 6vh 1vw 1vw 1vw;
 }
 
-.topboard-container {
+.stack-holder {
     display: flex;
+    margin-right: 3vw;
 }
 
 .closed-stacks {
+    display: flex;
+    position: relative;
+    margin-left: 0.5vw;
     width: 25vw;
 }

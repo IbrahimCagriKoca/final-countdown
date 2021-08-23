@@ -1,0 +1,14 @@
+.popup {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 2vw;
+    color: white;
+    width: 20vw;
+    height: 10vw;
+    background-color: green;
+    left: 40vw;
+
+}

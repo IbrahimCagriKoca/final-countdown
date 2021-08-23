@@ -4,6 +4,7 @@ import TopBoard from '../top-board/TopBoard';
 import Header from '../header/Header';
 import './gameUi.scss';
 import { shuffle, take } from 'lodash';
+import EndGamePopup from '../end-game-popup/EndGamePopup';
 
 const allCardNames = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
@@ -37,7 +38,6 @@ const GameUi = () => {
     useEffect(() => {
         if (completedStacks === 8) {
             setIsGameFinished(true);
-            setTimeout(() => alert(`Gazandınız, Puanınız: ${gameScore} `), 1000);
         }
     }, [completedStacks]);
 
@@ -76,6 +76,7 @@ const GameUi = () => {
                 onComplete={onComplete}
                 isGameStarted={isGameStarted}
             />
+            {isGameFinished && <EndGamePopup gameScore={gameScore} />}
             <Header
                 onStartGame={startGame}
                 isGameStarted={isGameStarted}
