@@ -2,18 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Counter from '../counter/Counter';
 import './header.scss';
 import { HUNDRED_MINUTES_IN_SECONDS } from '../constants';
-
-export const stringify = (string, n) => {
-    string = string.toLocaleString('en-US', {
-        minimumIntegerDigits: n,
-        useGrouping: false,
-    });
-    return string;
-};
-
-export const worstRestartEver = () => {
-    window.location.reload();
-};
+import { worstRestartEver, stringify } from '../helperFuntions';
 
 const Header = ({ onStartGame, isGameStarted, isGameFinished, gameScore, setGameScore, completedStacks }) => {
     const [counter, setCounter] = useState(0);
@@ -30,7 +19,7 @@ const Header = ({ onStartGame, isGameStarted, isGameFinished, gameScore, setGame
                 counter={counter}
                 setCounter={setCounter}
             />
-            <span>Score : {stringify(gameScore, 3)}</span>
+            <span className='game-score'>Score : {stringify(gameScore, 3)}</span>
             {!isGameStarted && (
                 <button className='game-button' onClick={onStartGame}>
                     Start

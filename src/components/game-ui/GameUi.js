@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import BottomBoard, { prepareInitialBoard } from '../bottom-board/BottomBoard';
+import BottomBoard from '../bottom-board/BottomBoard';
 import TopBoard from '../top-board/TopBoard';
 import Header from '../header/Header';
 import './gameUi.scss';
@@ -56,6 +56,7 @@ const GameUi = () => {
                 onComplete={onComplete}
                 isGameStarted={isGameStarted}
             />
+            {isGameFinished && <div className='background-blur' />}
             {isGameFinished && <EndGamePopup gameScore={gameScore} />}
             <Header
                 onStartGame={startGame}

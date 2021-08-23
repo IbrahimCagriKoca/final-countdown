@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ONE_SECOND } from '../constants';
-import { stringify } from '../header/Header';
+import { stringify } from '../helperFuntions';
 import { getRemainderSeconds, toMinutes, toHours } from '../helperFuntions';
 
 const Counter = ({ isGameStarted, isGameFinished, counter, setCounter }) => {

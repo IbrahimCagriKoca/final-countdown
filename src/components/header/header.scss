@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: space-around;
     gap: 30vw;
-    background-color: green;
+    background-color: #1DB954;
     color: white;
     height: 3vh;
     width: 100vw;
@@ -14,17 +14,33 @@
 
 .game-button {
     border-radius: 0.3vw;
-    padding: 0.3vw 1vw;
+    padding: 0.3vw 2vw;
+    opacity: 1;
+    box-shadow: 4px 4px 6px 0px rgba(0,0,0,0.75);
+    color: white;
     border: solid 1px gray;
-    background-color: lightgray;
+    background-color: #f27a1a;
 }
 
 .counter {
-    font-weight: bold;
+    font-weight: 600;
+    opacity: 0.8;
+    font-family: sans-serif;
     color: black;
     font-size: 1vw;
     background-color: lightgray;
     padding: 0.3vw 1.5vw;
     border-radius: 0.3vw;
 
+}
+
+.game-score {
+    font-weight: 600;
+    opacity: 0.8;
+    font-family: sans-serif;
+    color: black;
+    font-size: 1vw;
+    background-color: lightgray;
+    padding: 0.3vw 1.5vw;
+    border-radius: 0.3vw;
 }

@@ -59,3 +59,15 @@ export const isCardMovable = (order, cards) => {
     }
     return true;
 };
+
+export const stringify = (string, n) => {
+    string = string.toLocaleString('en-US', {
+        minimumIntegerDigits: n,
+        useGrouping: false,
+    });
+    return string;
+};
+
+export const worstRestartEver = () => {
+    window.location.reload();
+};
