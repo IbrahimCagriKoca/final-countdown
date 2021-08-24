@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Stack from '../stack/Stack';
+import Stack from '../../components/stack/Stack';
 import { times } from 'lodash';
 import './bottomBoard.scss';
-import { BOARD_STACK_COUNT, INITIAL_BOARD_CARD_COUNT } from '../constants';
-import { openLastCard, checkAndRemoveFinished, prepareInitialBoard } from '../helperFuntions';
+import { BOARD_STACK_COUNT, INITIAL_BOARD_CARD_COUNT } from '../../components/constants';
+import { openLastCard, checkAndRemoveFinished, prepareInitialBoard } from '../../components/helperFunctions';
 
 const BottomBoard = ({ drawCards, shouldDraw, onComplete, isGameStarted, setShouldDraw }) => {
     const [stackCards, setStackCards] = useState([[], [], [], [], [], [], [], [], [], []]);

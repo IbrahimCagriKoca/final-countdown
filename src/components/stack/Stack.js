@@ -4,7 +4,7 @@ import Card from '../card/Card';
 import PlaceHolder from '../place-holder/PlaceHolder';
 import { last } from 'lodash';
 import './stack.scss';
-import { isCardMovable } from '../helperFuntions';
+import { isCardMovable } from '../helperFunctions';
 
 const Stack = ({ cards, stackId, onSelect, onMove, onDrag, selectedCardId }) => {
     const [, drop] = useDrop(

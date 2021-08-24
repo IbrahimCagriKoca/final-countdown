@@ -4,7 +4,7 @@ import {
     checkAndRemoveFinished,
     prepareInitialBoard,
     checkFinished,
-} from '../components/helperFuntions';
+} from '../components/helperFunctions';
 import { example54CardDeck } from './constants';
 
 let mockedCardStack;

@@ -1,4 +1,4 @@
-import Header, { onStartGame } from '../components/header/Header';
+import Header, { onStartGame } from '../views/header/Header';
 import React from 'react';
 import { render } from '@testing-library/react';
 

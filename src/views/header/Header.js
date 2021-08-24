@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Counter from '../counter/Counter';
+import Counter from '../../components/counter/Counter';
 import './header.scss';
-import { HUNDRED_MINUTES_IN_SECONDS } from '../constants';
-import { worstRestartEver, stringify } from '../helperFuntions';
+import { HUNDRED_MINUTES_IN_SECONDS } from '../../components/constants';
+import { worstRestartEver, stringify } from '../../components/helperFunctions';
 
 const Header = ({ onStartGame, isGameStarted, isGameFinished, gameScore, setGameScore, completedStacks }) => {
     const [counter, setCounter] = useState(0);

@@ -1,4 +1,4 @@
-import TopBoard, { onDrawClick, completedStacks, isGameStarted } from '../components/top-board/TopBoard';
+import TopBoard, { onDrawClick, completedStacks, isGameStarted } from '../views/top-board/TopBoard';
 import React from 'react';
 import { render } from '@testing-library/react';
 

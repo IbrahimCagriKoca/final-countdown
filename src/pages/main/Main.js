@@ -1,5 +1,5 @@
 import React from 'react';
-import GameUi from '../game-ui/GameUi';
+import GameUi from '../../views/game-ui/GameUi';
 import './main.scss';
 
 const Main = () => {

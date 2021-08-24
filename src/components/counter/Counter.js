@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ONE_SECOND } from '../constants';
-import { stringify } from '../helperFuntions';
-import { getRemainderSeconds, toMinutes, toHours } from '../helperFuntions';
+import { stringify } from '../helperFunctions';
+import { getRemainderSeconds, toMinutes, toHours } from '../helperFunctions';
 
 const Counter = ({ isGameStarted, isGameFinished, counter, setCounter }) => {
     const [seconds, setSeconds] = useState(0);

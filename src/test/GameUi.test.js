@@ -1,4 +1,4 @@
-import GameUi from '../components/game-ui/GameUi';
+import GameUi from '../views/game-ui/GameUi';
 import React from 'react';
 import { render } from '@testing-library/react';
 

@@ -1,4 +1,4 @@
-import BottomBoard, { isGameStarted } from '../components/bottom-board/BottomBoard';
+import BottomBoard, { isGameStarted } from '../views/bottom-board/BottomBoard';
 import React from 'react';
 import { render } from '@testing-library/react';
 

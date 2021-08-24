@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import BottomBoard from '../bottom-board/BottomBoard';
-import TopBoard from '../top-board/TopBoard';
-import Header from '../header/Header';
+import BottomBoard from '../../views/bottom-board/BottomBoard';
+import TopBoard from '../../views/top-board/TopBoard';
+import Header from '../../views/header/Header';
 import './gameUi.scss';
 import { shuffle, take } from 'lodash';
-import EndGamePopup from '../end-game-popup/EndGamePopup';
-import { getFullDeck, BOARD_STACK_COUNT, DECK_SET_COUNT } from '../constants';
+import EndGamePopup from '../../components/end-game-popup/EndGamePopup';
+import { getFullDeck, BOARD_STACK_COUNT, DECK_SET_COUNT } from '../../components/constants';
 
 const GameUi = () => {
     const [gameDeck, setGameDeck] = useState(shuffle(getFullDeck()));

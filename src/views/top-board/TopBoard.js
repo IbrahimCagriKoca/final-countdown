@@ -1,9 +1,9 @@
 import React from 'react';
 import { times } from 'lodash';
-import ClosedStack from '../closed-stack/ClosedStack';
-import StackHolder from '../stack-holder/StackHolder';
+import ClosedStack from '../../components/closed-stack/ClosedStack';
+import StackHolder from '../../components/stack-holder/StackHolder';
 import './topBoard.scss';
-import { DECK_SET_COUNT } from '../constants';
+import { DECK_SET_COUNT } from '../../components/constants';
 
 const TopBoard = ({ closedStackCount, onDrawClick, completedStacks, isGameStarted }) => {
     return (

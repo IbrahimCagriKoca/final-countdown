@@ -1,5 +1,5 @@
 import React from 'react';
-import { worstRestartEver } from '../helperFuntions';
+import { worstRestartEver } from '../helperFunctions';
 import './endGamePopup.scss';
 
 const EndGamePopup = ({ gameScore }) => {
